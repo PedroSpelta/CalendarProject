@@ -178,3 +178,22 @@ function verifyEnterAppointment(eventOrigin) {
   const keyPressed = eventOrigin.which || eventOrigin.keyCode;
   if (keyPressed === 13) return addAppointment(eventOrigin);
 }
+
+
+// criando um botão de adicionar tarefas em baixo de 'minhas tarefas'.
+createTaskTextBox()
+function createTaskTextBox() {
+  const myTask = document.querySelector('.my-tasks');
+  const newTaskBox = document.createElement('div');
+  myTask.appendChild(newTaskBox);
+  const textBox = document.createElement('input');
+  const addBtn = document.createElement('button');
+  textBox.setAttribute('id', 'new-task-input');
+  textBox.setAttribute('placeholder', 'Escreva sua tarefa');
+  textBox.setAttribute('type', 'text');
+  myTask.appendChild(textBox);
+  addBtn.setAttribute('id', 'new-task-button');
+  addBtn.innerText = 'Adicionar'
+  myTask.appendChild(addBtn);
+
+}
