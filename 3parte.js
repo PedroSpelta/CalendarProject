@@ -128,16 +128,17 @@ function addLegendColorToTask(stringColor) {
 // exercicio 9
 addEventTaskSelected();
 function addEventTaskSelected() {
-  const allTasks = document.querySelectorAll('.task');
-  for (task of allTasks) {
-    task.addEventListener('click', selectTask);
-  }
+  const allTasks = document.querySelector('#my-tasks-list');
+  allTasks.lastChild.addEventListener('click', selectTask);
 }
 
 function selectTask(originEvent) {
   const list = originEvent.target.classList;
+  const otherSelected = document.querySelectorAll('.selected')
   if (list.length < 2) list.add('selected');
   else list.remove('selected');
+  if (otherSelected.length > 1) otherSelected[1].classList.remove('selected');
+  console.log(otherSelected);
 }
 
 // exercicio 10
@@ -197,4 +198,5 @@ function newTask(originEvent) {
   addLegendColorToTask(colorsArray[list.length-1]);
   console.log(list);
   text.value = '';
+  addEventTaskSelected()
 }
