@@ -183,17 +183,22 @@ function verifyEnterAppointment(eventOrigin) {
 // criando um botão de adicionar tarefas em baixo de 'minhas tarefas'.
 createTaskTextBox()
 function createTaskTextBox() {
+  //criando uma div para colocar o input e o botao
   const myTask = document.querySelector('.my-tasks');
   const newTaskBox = document.createElement('div');
   myTask.appendChild(newTaskBox);
+  //criando o input e o botao
   const textBox = document.createElement('input');
   const addBtn = document.createElement('button');
+  //mudando att do input
   textBox.setAttribute('id', 'new-task-input');
   textBox.setAttribute('placeholder', 'Escreva sua tarefa');
   textBox.setAttribute('type', 'text');
-  myTask.appendChild(textBox);
+  //mudando att do botao
   addBtn.setAttribute('id', 'new-task-button');
-  addBtn.innerText = 'Adicionar'
-  myTask.appendChild(addBtn);
+  addBtn.innerText = 'Adicionar' 
+  //adicionando eles na div
+  newTaskBox.appendChild(textBox);
+  newTaskBox.appendChild(addBtn);
 
 }
