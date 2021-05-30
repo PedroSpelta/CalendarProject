@@ -84,7 +84,8 @@ label {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   display: inline-block;
   height: 35px;
-  margin-left: 10px;
+  margin-left: 30px;
+  margin-right: 70px;
   vertical-align: middle;
   width: 35px;
 }
@@ -162,4 +163,8 @@ label {
 #new-task-button {
   display:inline-block;
   margin: 0;
+}
+
+#my-tasks-list {
+  text-align: right;
 }

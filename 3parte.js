@@ -108,15 +108,17 @@ function zoomOff(originEvent) {
 taskCreator('cozinhar');
 function taskCreator(string) {
   const myTask = document.querySelector('#my-tasks-list');
+  const divTask = document.createElement('div');
   const element = document.createElement('span');
   element.innerText = string;
-  myTask.appendChild(element);
+  divTask.appendChild(element);
+  myTask.appendChild(divTask);
 }
 
 // exercicio 8
 addLegendColorToTask('green');
 function addLegendColorToTask(stringColor) {
-  const myTask = document.querySelector('#my-tasks-list');
+  const myTask = document.querySelector('#my-tasks-list').lastChild;
   const div = document.createElement('div');
   div.setAttribute('class', 'task');
   div.style.backgroundColor = stringColor;
@@ -180,25 +182,19 @@ function verifyEnterAppointment(eventOrigin) {
 }
 
 
-// // criando um botão de adicionar tarefas em baixo de 'minhas tarefas'.
-// createTaskTextBox()
-// function createTaskTextBox() {
-//   //criando uma div para colocar o input e o botao
-//   const myTask = document.querySelector('.my-tasks');
-//   const newTaskBox = document.createElement('div');
-//   myTask.appendChild(newTaskBox);
-//   //criando o input e o botao
-//   const textBox = document.createElement('input');
-//   const addBtn = document.createElement('button');
-//   //mudando att do input
-//   textBox.setAttribute('id', 'new-task-input');
-//   textBox.setAttribute('placeholder', 'Escreva sua tarefa');
-//   textBox.setAttribute('type', 'text');
-//   //mudando att do botao
-//   addBtn.setAttribute('id', 'new-task-button');
-//   addBtn.innerText = 'Adicionar' 
-//   //adicionando eles na div
-//   newTaskBox.appendChild(textBox);
-//   newTaskBox.appendChild(addBtn);
+// Fazendo funcao para adicionar tarefas com cores diferentes
+const addTaskButton = document.querySelector('#my-tasks-add-button')
+addTaskButton.addEventListener('click', newTask);
 
-// }
+
+
+function newTask(originEvent) {
+  const colors = 'green red orange blue'.split(' ')
+  const colorsArray = Array(4).fill(colors).flat()
+  var text = document.querySelector('#my-tasks-input')
+  const list = document.querySelector('#my-tasks-list').children
+  taskCreator(text.value);
+  addLegendColorToTask(colorsArray[list.length-1]);
+  console.log(list);
+  text.value = '';
+}
