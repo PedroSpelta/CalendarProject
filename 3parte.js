@@ -50,14 +50,21 @@ function changeMonth(type) {
     month += 1;
     const DaysList = getDaysInMonth(year, month);
     const Holidays = [24, 25, 31];
-    removeDays()
+    removeMonthDays();
     createDaysOfMonth(DaysList, Holidays);
   } else {
     year += 1;
     const DaysList = getDaysInMonth(year, month);
     const Holidays = [24, 25, 31];
+    removeMonthDays();
     createDaysOfMonth(DaysList, Holidays);
   }
+}
+
+function removeMonthDays () {
+  const daysContainer = document.querySelector('.days-container');
+  const daysList = document.querySelector('#days');
+  daysContainer.removeChild(daysList);
 }
 
 var month = 5;
@@ -67,7 +74,11 @@ const Holidays = [24, 25, 31];
 createDaysOfMonth(DaysList, Holidays);
 
 function createDaysOfMonth(monthList, holiDays) {
-  const dayList = document.querySelector('#days');
+  const daysContainer = document.querySelector('.days-container');
+  const dayList = document.createElement('ul');
+  dayList.setAttribute('id', 'days');
+  daysContainer.appendChild(dayList);
+
   let holiCount = 0;
   for (index = 0; index < monthList.length; index += 1) {
     const insertDay = document.createElement('li');
