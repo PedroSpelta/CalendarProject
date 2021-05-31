@@ -201,16 +201,19 @@ function addLegendColorToTask(stringColor) {
 addEventTaskSelected();
 function addEventTaskSelected() {
   const allTasks = document.querySelector('#my-tasks-list');
-  allTasks.lastChild.addEventListener('click', selectTask);
+  allTasks.lastChild.lastChild.addEventListener('click', selectTask);
 }
 
 function selectTask(originEvent) {
   const list = originEvent.target.classList;
-  const otherSelected = document.querySelectorAll('.selected')
-  if (list.length < 2) list.add('selected');
-  else list.remove('selected');
-  if (otherSelected.length > 1) otherSelected[1].classList.remove('selected');
-  console.log(otherSelected);
+  let otherSelected = document.querySelectorAll('.selected')
+  if (otherSelected.length > 0) {
+    otherSelected[0].classList.remove('selected');
+    // for (let element of otherSelected){
+    //   element.classList.remove('selected');
+    // }
+  }
+  list.add('selected');
 }
 
 // exercicio 10
@@ -254,7 +257,7 @@ function verifyEnterAppointment(eventOrigin) {
   if (keyPressed === 13) return addAppointment(eventOrigin);
 }
 
-// Fazendo funcao para adicionar tarefas com cores diferentes
+// funcao para adicionar tarefas com cores diferentes
 const addTaskButton = document.querySelector('#my-tasks-add-button')
 addTaskButton.addEventListener('click', newTask);
 
@@ -265,7 +268,6 @@ function newTask(originEvent) {
   const list = document.querySelector('#my-tasks-list').children
   taskCreator(text.value);
   addLegendColorToTask(colorsArray[list.length-1]);
-  console.log(list);
   text.value = '';
   addEventTaskSelected()
 }

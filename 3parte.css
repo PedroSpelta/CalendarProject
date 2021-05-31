@@ -21,21 +21,23 @@ button {
 }
 
 #my-tasks-add-button {
-  padding: 13px 13px 13px 5px;
+  padding: 10px 13px 13px 5px;
   margin-left: 0px;
   display: inline;
   border: 1.4px solid;
+  height: 38.8px;
   border-top-right-radius: 24px;
   border-bottom-right-radius: 24px;
   background-color: #70C1B3;
+  vertical-align: middle;
 }
 
 #my-tasks-input {
   width: 160px;
+  height: 34px;
   text-align: right;
   display: inline;
-  margin: 0px;
-  padding: 13px 5px 13px 0px;
+  padding-right: 8px;
   border: 1.4px solid;
   border-top-left-radius: 24px;
   border-bottom-left-radius: 24px;
@@ -118,17 +120,20 @@ label {
 
 .my-tasks .task {
   border: 1px solid black;
-  border-top-right-radius: 24px;
-  border-bottom-right-radius: 24px;
+  border-radius: 23px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   display: inline-block;
-  height: 44px;
   margin-left: 0px;
   margin-right: 0px;
   vertical-align: middle;
-  width: 56px;
+  height: 44px;
+  width: 44px;
 }
 
+.my-tasks .selected {
+  height: 55px;
+  width: 55px;
+}
 /* .my-tasks .task:hover {
   height: 45px;
   width: 45px;
@@ -210,6 +215,8 @@ label {
 
 #my-tasks-list div {
   text-align: center;
+  padding: auto;
+  margin: auto;
 }
 
 #my-tasks-list .task-text-div{
@@ -217,17 +224,33 @@ label {
 }
 
 #my-tasks-list div .task-text-div {
-  border: 1px;
+  border: 2px;
   display: inline-block;
   border: 1px solid;
-  height: 44px;
-  border-top-left-radius: 24px;
-  border-bottom-left-radius: 24px;
+  height: 34px;
+  border-radius: 10px;
   text-align: right;
   vertical-align: middle;
 }
 
 #my-tasks-list div .task-text-div p {
-  margin: 13px 5px 0 20px;
+  margin: 8px 8px 0px 8px;
 
+}
+
+.month-container ul {
+  font-size: 56px;
+  font-weight: 800;
+  vertical-align: middle;
+}
+
+.month-container ul li {
+  font-size: 25px;
+}
+
+.month-container div {
+  font-size: 35px;
+  font-weight: 500;
+  margin: 10px;
+  vertical-align: middle;
 }
