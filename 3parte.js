@@ -43,14 +43,19 @@ function getMonthList (weekdaysList) {
 //funcao para trocar o mês
 const previousMonth = document.querySelector('#previous-month');
 const nextMonth = document.querySelector('#next-month');
+previousMonth.addEventListener('click', changeMonth);
 nextMonth.addEventListener('click', changeMonth);
+previousMonth.nextPrevious = -1;
+nextMonth.nextPrevious = +1;
+
 //essa funcao apaga o mes atual e passa para o proximo/anterior mes
-function changeMonth(type) {
+function changeMonth(event) {
+  const aditive = event.target.nextPrevious
   if (month < 12) {
-    month += 1;
+    month += aditive;
   } else {
-    year += 1;
-    month = 1;
+    year += aditive;
+    month = aditive;
   }
   const DaysList = getDaysInMonth(year, month);
   const Holidays = [24, 25, 31];
