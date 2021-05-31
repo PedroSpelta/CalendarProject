@@ -254,3 +254,11 @@ label {
   margin: 10px;
   vertical-align: middle;
 }
+
+.month-container div:hover {
+  cursor:pointer;
+}
+
+.month-container:hover {
+  cursor: default;
+}
