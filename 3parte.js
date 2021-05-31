@@ -44,23 +44,32 @@ function getMonthList (weekdaysList) {
 const previousMonth = document.querySelector('#previous-month');
 const nextMonth = document.querySelector('#next-month');
 nextMonth.addEventListener('click', changeMonth);
+//essa funcao apaga o mes atual e passa para o proximo/anterior mes
 function changeMonth(type) {
   if (month < 12) {
-    console.log('teste')
     month += 1;
-    const DaysList = getDaysInMonth(year, month);
-    const Holidays = [24, 25, 31];
-    removeMonthDays();
-    createDaysOfMonth(DaysList, Holidays);
   } else {
     year += 1;
-    const DaysList = getDaysInMonth(year, month);
-    const Holidays = [24, 25, 31];
-    removeMonthDays();
-    createDaysOfMonth(DaysList, Holidays);
+    month = 1;
   }
+  const DaysList = getDaysInMonth(year, month);
+  const Holidays = [24, 25, 31];
+  removeMonthDays();
+  changeMonthYearTitle(year, month);
+  createDaysOfMonth(DaysList, Holidays);
 }
 
+//essa funcao troca o texto que indica o mes atual e o ano
+function changeMonthYearTitle(year, month) {
+  const monthList = 'Janeiro Fevereiro Março Abril Maio Junho Julho Agosto Setembro Outubro Novembro Dezembro'.split(' ')
+  console.log(year,month)
+  let monthTitle = document.querySelector('#month');
+  let yearTitle = document.querySelector('#year');
+  monthTitle.innerText = monthList[month-1];
+  yearTitle.innerText = year;
+}
+
+//essa funcao remove o mes atual
 function removeMonthDays () {
   const daysContainer = document.querySelector('.days-container');
   const daysList = document.querySelector('#days');
@@ -73,6 +82,7 @@ const DaysList = getDaysInMonth(2021, 5);
 const Holidays = [24, 25, 31];
 createDaysOfMonth(DaysList, Holidays);
 
+//essa funcao cria o mes(ul) e seus dias(li)
 function createDaysOfMonth(monthList, holiDays) {
   const daysContainer = document.querySelector('.days-container');
   const dayList = document.createElement('ul');
