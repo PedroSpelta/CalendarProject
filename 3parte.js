@@ -1,5 +1,4 @@
 /* eslint-disable require-jsdoc */
-
 function createDaysOfTheWeek() {
   const weekDays = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
   const weekDaysList = document.querySelector('.week-days');
@@ -12,16 +11,36 @@ function createDaysOfTheWeek() {
     weekDaysList.appendChild(dayListItem);
   };
 };
-
 createDaysOfTheWeek();
 
-// Escreva seu código abaixo.
-// /////////////////////////////////////////////////////////////////////////////
+// criando a lista de dias do mês, index é o dia. o valor é o dia da semana
+function getDaysInMonth(year, month) {
+  month -= 1;
+  let date = new Date(year, month, 1);
+  let days = [];
+  while (date.getMonth() === month) {
+    days.push (date.getDay())
+    date.setDate(date.getDate()+1);
+  }
+  return getMonthList(days)
+}
 
-// exercicio 1
-const dezDaysList = [29, 30, 1, 2, 3, 4, 5, 6,
-  7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
-  19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
+//retorna a lista de dias do mês começando com ' ' até iniciar o mẽs de fato
+function getMonthList (weekdaysList) {
+  let missingDays = weekdaysList[0];
+  let monthList = [];
+  let day = 1;
+  for (let index = 0; index < missingDays; index += 1) {
+    monthList.push(' ')
+  }
+  for (weekDay of weekdaysList) {
+    monthList.push(day)
+    day += 1;
+  }
+  return monthList
+}
+
+const dezDaysList = getDaysInMonth(2021, 5);
 const dezHolidays = [24, 25, 31];
 createDaysOfMonth(dezDaysList, dezHolidays);
 
@@ -109,8 +128,11 @@ taskCreator('cozinhar');
 function taskCreator(string) {
   const myTask = document.querySelector('#my-tasks-list');
   const divTask = document.createElement('div');
-  const element = document.createElement('span');
-  element.innerText = string;
+  const element = document.createElement('div');
+  const elementText = document.createElement('p');
+  element.setAttribute('class', 'task-text-div');
+  elementText.innerText = string;
+  element.appendChild(elementText);
   divTask.appendChild(element);
   myTask.appendChild(divTask);
 }
@@ -182,15 +204,12 @@ function verifyEnterAppointment(eventOrigin) {
   if (keyPressed === 13) return addAppointment(eventOrigin);
 }
 
-
 // Fazendo funcao para adicionar tarefas com cores diferentes
 const addTaskButton = document.querySelector('#my-tasks-add-button')
 addTaskButton.addEventListener('click', newTask);
 
-
-
 function newTask(originEvent) {
-  const colors = 'green red orange blue'.split(' ')
+  const colors = '#70C1B3 #B2DBBF #F3FFBD #FF1654'.split(' ')
   const colorsArray = Array(4).fill(colors).flat()
   var text = document.querySelector('#my-tasks-input')
   const list = document.querySelector('#my-tasks-list').children
@@ -200,3 +219,6 @@ function newTask(originEvent) {
   text.value = '';
   addEventTaskSelected()
 }
+
+// //criando o mês
+// const date = Date.now()
