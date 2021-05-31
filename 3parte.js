@@ -40,9 +40,31 @@ function getMonthList (weekdaysList) {
   return monthList
 }
 
-const dezDaysList = getDaysInMonth(2021, 5);
-const dezHolidays = [24, 25, 31];
-createDaysOfMonth(dezDaysList, dezHolidays);
+//funcao para trocar o mês
+const previousMonth = document.querySelector('#previous-month');
+const nextMonth = document.querySelector('#next-month');
+nextMonth.addEventListener('click', changeMonth);
+function changeMonth(type) {
+  if (month < 12) {
+    console.log('teste')
+    month += 1;
+    const DaysList = getDaysInMonth(year, month);
+    const Holidays = [24, 25, 31];
+    removeDays()
+    createDaysOfMonth(DaysList, Holidays);
+  } else {
+    year += 1;
+    const DaysList = getDaysInMonth(year, month);
+    const Holidays = [24, 25, 31];
+    createDaysOfMonth(DaysList, Holidays);
+  }
+}
+
+var month = 5;
+var year = 2021;
+const DaysList = getDaysInMonth(2021, 5);
+const Holidays = [24, 25, 31];
+createDaysOfMonth(DaysList, Holidays);
 
 function createDaysOfMonth(monthList, holiDays) {
   const dayList = document.querySelector('#days');
@@ -96,15 +118,17 @@ const holidayButton = dinButton('Sexta-feira', 'btn-friday');
 holidayButton.addEventListener('click', fridayTextChanger);
 function fridayTextChanger(eventOrigin) {
   const allFridays = document.querySelectorAll('.friday');
-  if (allFridays[0].innerText === 'Sexta') {
+  if (allFridays[1].innerText === 'Sexta') {
     for (index = 0; index < allFridays.length; index += 1) {
-      const anterior = allFridays[index].previousElementSibling.innerText;
-      allFridays[index].innerText = parseInt(anterior) + 1;
+      const proximo = allFridays[index].nextElementSibling.innerText;
+      allFridays[index].innerText = parseInt(proximo) - 1;
     }
   } else {
     for (index = 0; index < allFridays.length; index += 1) {
-      allFridays[index].innerText = 'Sexta';
-    }
+      if (allFridays[index].innerText !== '') {
+        allFridays[index].innerText = 'Sexta';
+      }
+    } 
   }
 }
 

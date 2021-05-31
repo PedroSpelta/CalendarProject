@@ -90,6 +90,14 @@ label {
   background: green;
   padding: 40px 25px;
   text-align: center;
+  vertical-align: middle;
+  color: white;
+}
+
+
+.month-container ul, .month-container div {
+  display: inline-block;
+  padding-inline-start: 0px;
 }
 
 .month-container ul li {
